@@ -23,8 +23,8 @@
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power",
   "url": "https://github.com/SaintJooJ/foundryvtt-chroniclesystem/",
-  "manifest": "https://raw.githubusercontent.com/SaintJooJ/foundryvtt-chroniclesystem/master/system.json",
-  "download": "https://raw.githubusercontent.com/SaintJooJ/foundryvtt-chroniclesystem/master/chroniclesystem.zip",
+  "manifest": "https://raw.githubusercontent.com/SaintJooJ/foundryvtt-chroniclesystem/main/system.json",
+  "download": "https://raw.githubusercontent.com/SaintJooJ/foundryvtt-chroniclesystem/main/chroniclesystem.zip",
   "license": "ISC",
   "id": "chroniclesystem",
   "authors": [
