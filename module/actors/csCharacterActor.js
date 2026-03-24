@@ -35,6 +35,7 @@ export class CSCharacterActor extends CSActor {
 
     calculateDerivedValues() {
         let data = this.getCSData();
+        const system = this.system;
         system.derivedStats.intrigueDefense.value = this.calcIntrigueDefense();
         system.derivedStats.intrigueDefense.total = system.derivedStats.intrigueDefense.value + parseInt(system.derivedStats.intrigueDefense.modifier);
         system.derivedStats.composure.value = this.getAbilityValue(SystemUtils.localize(ChronicleSystem.keyConstants.WILL)) * 3;
@@ -64,6 +65,7 @@ export class CSCharacterActor extends CSActor {
 
     getAbilityBySpecialty(abilityName, specialtyName) {
         let items = this.items;
+        const system = this.system;
         let specialty = null;
         const ability = items.filter((item) => item.type === 'ability' && item.name.toLowerCase() === abilityName.toString().toLowerCase()).find(function (ability) {
             let data = ability.getCSData();

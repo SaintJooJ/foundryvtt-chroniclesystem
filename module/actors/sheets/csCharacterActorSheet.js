@@ -44,6 +44,7 @@ export class CSCharacterActorSheet extends CSActorSheet {
   /** @override */
   getData() {
     const data = super.getData();
+    const system = this.actor.system;
     system.dtypes = ["String", "Number", "Boolean"];
     this.splitItemsByType(data);
 
