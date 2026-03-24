@@ -12,9 +12,11 @@ export class CSCharacterActor extends CSActor {
     modifiers;
     penalties;
 
-    prepareData() {
-        super.prepareData();
+    prepareDerivedData() {
+        super.prepareDerivedData();
+
         this.calculateMovementData();
+        this.calculateDerivedValues();
     }
 
     prepareEmbeddedDocuments() {
@@ -282,6 +284,7 @@ export class CSCharacterActor extends CSActor {
 
     calculateMovementData() {
         let data = this.getCSData();
+        const system = this.system;
         system.movement.base = ChronicleSystem.defaultMovement;
         let runFormula = ChronicleSystem.getActorAbilityFormula(this, SystemUtils.localize(ChronicleSystem.keyConstants.ATHLETICS), SystemUtils.localize(ChronicleSystem.keyConstants.RUN));
         system.movement.runBonus = Math.floor(runFormula.bonusDice / 2);

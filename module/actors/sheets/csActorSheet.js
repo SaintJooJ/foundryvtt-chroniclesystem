@@ -38,8 +38,8 @@ export class CSActorSheet extends ActorSheet {
         return true;
     }
 
-    splitItemsByType(data) {
-        system.itemsByType = {};
+    splitItemsByType() {
+        const system = this.actor.system;
         for (const item of this.actor.items) {
             let list = system.itemsByType[item.type];
             if (!list) {
