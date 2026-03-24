@@ -48,7 +48,7 @@ export class CSCharacterActorSheet extends CSActorSheet {
     system.dtypes = ["String", "Number", "Boolean"];
     this.splitItemsByType(data);
 
-    let character = system.actor.getCSData();
+    let character = this.actor.getCSData();
     this.isOwner = this.actor.isOwner;
 
     character.owned.equipments = this._checkNull(system.itemsByType['equipment']);
