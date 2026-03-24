@@ -23,7 +23,7 @@ export class CSCharacterActorSheet extends CSActorSheet {
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["chroniclesystem", "character", "sheet", "actor"],
       template: "systems/chroniclesystem/templates/actors/characters/character-sheet.hbs",
       width: 700,
@@ -48,16 +48,16 @@ export class CSCharacterActorSheet extends CSActorSheet {
     system.dtypes = ["String", "Number", "Boolean"];
     this.splitItemsByType(data);
 
-    let character = this.actor.getCSData();
+    let character = this.actor;
     this.isOwner = this.actor.isOwner;
 
-    character.owned.equipments = this._checkNull(system.itemsByType['equipment']);
-    character.owned.weapons = this._checkNull(system.itemsByType['weapon']);
-    character.owned.armors = this._checkNull(system.itemsByType['armor']);
-    character.owned.benefits = this._checkNull(system.itemsByType['benefit']);
-    character.owned.drawbacks = this._checkNull(system.itemsByType['drawback']);
-    character.owned.abilities = this._checkNull(system.itemsByType['ability']).sort((a, b) => a.name.localeCompare(b.name));
-    character.owned.techniques = this._checkNull(system.itemsByType['technique']).sort((a, b) => a.name.localeCompare(b.name));
+    system.owned.equipments = this._checkNull(system.itemsByType['equipment']);
+    system.owned.weapons = this._checkNull(system.itemsByType['weapon']);
+    system.owned.armors = this._checkNull(system.itemsByType['armor']);
+    system.owned.benefits = this._checkNull(system.itemsByType['benefit']);
+    system.owned.drawbacks = this._checkNull(system.itemsByType['drawback']);
+    system.owned.abilities = this._checkNull(system.itemsByType['ability']).sort((a, b) => a.name.localeCompare(b.name));
+    system.owned.techniques = this._checkNull(system.itemsByType['technique']).sort((a, b) => a.name.localeCompare(b.name));
 
     system.dispositions = ChronicleSystem.dispositions;
 
@@ -66,7 +66,7 @@ export class CSCharacterActorSheet extends CSActorSheet {
     system.techniquesTypes = CSConstants.TechniqueType;
     system.techniquesCosts = CSConstants.TechniqueCost;
 
-    character.owned.weapons.forEach((weapon) => {
+    system.owned.weapons.forEach((weapon) => {
       let weaponData = weapon.system;
       let info = weaponsystem.specialty.split(':');
       if (info.length < 2)
@@ -77,7 +77,7 @@ export class CSCharacterActorSheet extends CSActorSheet {
       weapon.formula = formula;
     });
 
-    character.owned.techniques.forEach((technique) => {
+    system.owned.techniques.forEach((technique) => {
       let techniqueData = technique.system;
       let works = system.currentInjuries = Object.values(techniquesystem.works);
       works.forEach((work) => {
@@ -93,8 +93,8 @@ export class CSCharacterActorSheet extends CSActorSheet {
 
     this._calculateIntrigueTechniques(data);
 
-    system.currentInjuries = Object.values(character.injuries).length;
-    system.currentWounds = Object.values(character.wounds).length;
+    system.currentInjuries = Object.values(system.injuries).length;
+    system.currentWounds = Object.values(system.wounds).length;
     system.maxInjuries = this.actor.getMaxInjuries();
     system.maxWounds = this.actor.getMaxWounds();
     system.character = character;
@@ -159,7 +159,7 @@ export class CSCharacterActorSheet extends CSActorSheet {
   }
 
   async setFrustrationValue(newValue) {
-    let value = Math.max(Math.min(parseInt(newValue), this.actor.getCSData().derivedStats.frustration.total), 0);
+    let value = Math.max(Math.min(parseInt(newValue), this.actor.derivedStats.frustration.total), 0);
 
     this.actor.updateTempPenalties();
 
@@ -178,7 +178,7 @@ export class CSCharacterActorSheet extends CSActorSheet {
   }
 
   async setFatigueValue(newValue) {
-    let value = Math.max(Math.min(parseInt(newValue), this.actor.getCSData().derivedStats.fatigue.total), 0);
+    let value = Math.max(Math.min(parseInt(newValue), this.actor.derivedStats.fatigue.total), 0);
 
     this.actor.updateTempModifiers();
 
@@ -195,7 +195,7 @@ export class CSCharacterActorSheet extends CSActorSheet {
   }
 
   async setStressValue(newValue) {
-    let value = Math.max(Math.min(parseInt(newValue), this.actor.getCSData().derivedStats.frustration.total), 0);
+    let value = Math.max(Math.min(parseInt(newValue), this.actor.derivedStats.frustration.total), 0);
 
     this.actor.updateTempPenalties();
 
@@ -223,7 +223,7 @@ export class CSCharacterActorSheet extends CSActorSheet {
 
   async _onClickWoundCreate(ev) {
     ev.preventDefault();
-    const data = this.actor.getCSData();
+    const data = this.actor;
     let wound = "";
     let wounds = Object.values(system.wounds);
     if (wounds.length >= this.actor.getMaxWounds())
@@ -244,7 +244,7 @@ export class CSCharacterActorSheet extends CSActorSheet {
     const action = a.dataset.action;
 
     if ( action === "delete" ) {
-      const data = this.actor.getCSData();
+      const data = this.actor;
       let wounds = Object.values(system.wounds);
       wounds.splice(index,1);
 
@@ -263,7 +263,7 @@ export class CSCharacterActorSheet extends CSActorSheet {
 
   async _onClickInjuryCreate(ev) {
     ev.preventDefault();
-    const data = this.actor.getCSData();
+    const data = this.actor;
     let injury = "";
     let injuries = Object.values(system.injuries);
     if (injuries.length >= this.actor.getMaxInjuries())
@@ -287,7 +287,7 @@ export class CSCharacterActorSheet extends CSActorSheet {
     const action = a.dataset.action;
 
     if ( action === "delete" ) {
-      const data = this.actor.getCSData();
+      const data = this.actor;
       let injuries = Object.values(system.injuries);
       injuries.splice(index,1);
 
