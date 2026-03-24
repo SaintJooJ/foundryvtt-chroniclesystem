@@ -1,0 +1,5 @@
+# IDE
+.idea/
+.vs/
+/chroniclesystem.lock
+node_modules/

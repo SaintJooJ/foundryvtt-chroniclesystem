@@ -1,0 +1,41 @@
+{
+  "title": "Chronicle System (Unofficial)",
+  "description": "An implementation for Green Ronin's Chronicle System, used by SIFRP and Sword Chronicles.",
+  "version": "0.6.0",
+  "esmodules": [
+    "module/system/config.js"
+  ],
+  "styles": [
+    "styles/global.css",
+    "styles/actor-sheet.css",
+    "styles/less/global.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "flags": {}
+    }
+  ],
+  "gridDistance": 5,
+  "gridUnits": "ft",
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "power",
+  "url": "https://github.com/SaintJooJ/foundryvtt-chroniclesystem/",
+  "manifest": "https://raw.githubusercontent.com/SaintJooJ/foundryvtt-chroniclesystem/master/system.json",
+  "download": "https://raw.githubusercontent.com/SaintJooJ/foundryvtt-chroniclesystem/master/chroniclesystem.zip",
+  "license": "ISC",
+  "id": "chroniclesystem",
+  "authors": [
+    {
+      "name": "Jorge 'SaintGeorge' Garcia",
+      "discord": "o_boss",
+      "flags": {}
+    }
+  ],
+  "compatibility": {
+    "minimum": "12",
+    "verified": "13.351"
+  }
+}
