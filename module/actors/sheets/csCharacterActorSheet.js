@@ -15,7 +15,7 @@ export class CSCharacterActorSheet extends CSActorSheet {
       "ability",
       "weapon",
       "armor",
-      "equipment",
+      "equipments",
       "benefit",
       "drawback",
       "technique"
@@ -51,7 +51,7 @@ export class CSCharacterActorSheet extends CSActorSheet {
     let character = this.actor;
     this.isOwner = this.actor.isOwner;
 
-    system.owned.equipments = this._checkNull(system.itemsByType['equipment']);
+    system.owned.equipments = this._checkNull(system.itemsByType['equipments']);
     system.owned.weapons = this._checkNull(system.itemsByType['weapon']);
     system.owned.armors = this._checkNull(system.itemsByType['armor']);
     system.owned.benefits = this._checkNull(system.itemsByType['benefit']);
